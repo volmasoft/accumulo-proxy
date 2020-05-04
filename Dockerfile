@@ -13,7 +13,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-FROM openjdk:8
+FROM openjdk:8-alpine3.9
 
 EXPOSE 42424
 
@@ -79,6 +79,9 @@ RUN ln -s "/opt/accumulo-proxy-${ACCUMULO_PROXY_VERSION}/" "${ACCUMULO_PROXY_HOM
 
 # Ensure Accumulo is on the path.
 ENV PATH "${PATH}:${ACCUMULO_HOME}/bin"
+
+# TODO Alpine linux fix - Add Bash for now, should be able to remove in time.
+RUN apk --no-cache add bash
 
 WORKDIR ${ACCUMULO_PROXY_HOME}
 
